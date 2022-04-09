@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe UserMailer, type: :mailer do
   describe "welcome_email" do
     let(:user) { FactoryBot.create(:user) }
-    let(:mail) { UserMailer.welcome_email(:user) }
+    let(:mail) { UserMailer.welcome_email(user) }
 
     it "sends a welcome email to the user's email address" do
       expect(mail.to).to eq [user.email]
