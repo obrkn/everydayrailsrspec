@@ -57,5 +57,14 @@ RSpec.describe Note, type: :model do
         expect(Note.count).to eq 3
       end
     end
+
+    it "delegates name to the user who created it" do
+      #user = FactoryBot.create(:user, first_name: "Fake", last_name: "User")
+      #note = Note.new(user: user)
+      user = instance_double("User", name: "Fake User")
+      note = Note.new
+      allow(note).to receive(:user).and_return(user)
+      expect(note.user_name).to eq "Fake User"
+    end
   end
 end
